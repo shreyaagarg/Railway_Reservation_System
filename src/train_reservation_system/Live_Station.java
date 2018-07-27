@@ -1,3 +1,5 @@
+package train_reservation_system;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -25,8 +30,52 @@ public class Live_Station extends javax.swing.JFrame {
      */
     public Live_Station() {
         initComponents();
+        fetch();
+        fetch1();
     }
-
+        public void fetch()
+    {
+       
+        try
+        {
+            String qry="Select station_name from train_table";
+            ResultSet rs=new Global().execute(qry);
+             DefaultComboBoxModel dcm=new DefaultComboBoxModel();
+             while(rs.next())
+             {
+                 dcm.addElement(rs.getString("station_name"));
+             }
+             jComboBox1.setModel(dcm);
+             jComboBox2.setModel(dcm);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+       
+    }
+         public void fetch1()
+    {
+       
+        try
+        {
+            String qry="Select station_name from train_table";
+            ResultSet rs=new Global().execute(qry);
+             DefaultComboBoxModel dcm=new DefaultComboBoxModel();
+             while(rs.next())
+             {
+                 dcm.addElement(rs.getString("station_name"));
+             }
+             //jComboBox1.setModel(dcm);
+             jComboBox2.setModel(dcm);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+       
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -259,54 +308,43 @@ public class Live_Station extends javax.swing.JFrame {
  String station_name,finl;
  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-DefaultTableModel  model = (DefaultTableModel) jTable1.getModel();
-    try{
-     station_name = jComboBox1.addItem(finl);
-      
-       
-con = DriverManager.getConnection("jdbc:mysql://localhost/train","root","");
-stmt = con.prepareStatement("select train_no from train_table where station_name =? ");
-  stmt.setString(1,station_name);
 
- rs=stmt.executeQuery();
+    try{
+String qery="Select train_no from train_table where station_name=?";
+ ResultSet rs=new Global().execute(qery);
+ DefaultTableModel  model = (DefaultTableModel) jTable1.getModel();
  List rowValue = new ArrayList();
 while (rs.next()) {
     rowValue.add(rs.getString(1));
-   
 }   
         String[] ai= (String[]) rowValue.toArray(new String[rowValue.size()]);
-    
-   /*    for(int i=0;i<ai.length;i=i+5)
-       {
-          // System.out.println(ai[i]);  
-model.addRow(new Object[]{ai[i],ai[i+1],ai[i+2],ai[i+3],ai[i+4] });
-       }*/
-   
-   finl = jTextField2.getText();
-   for(int j=0;j<rowValue.size();j++)
-   {
-   st = con.prepareStatement("select train_name,train_no,distance,arr_t,dep_t from train_table where train_no=? and station_name= ? ");
-   st.setString(1,ai[j]); 
-   st.setString(2,finl); 
-     rs=st.executeQuery();
+        for(int j=0;j<rowValue.size();j++){
+   String q="select train_name,train_no,distance,arr_t,dep_t from train_table where train_no=? and station_name= ? ";
+   ResultSet r;
+    r = new Global().execute(q);
+   //st.setString(1,ai[j]); 
+  // st.setString(2,finl); 
+    // r=st.executeQuery();
  List rowValues = new ArrayList();
-while (rs.next()) {
-    rowValues.add(rs.getString(1));
-    rowValues.add(rs.getString(2));
-    rowValues.add(rs.getString(3));
-    rowValues.add(rs.getString(4));
-    rowValues.add(rs.getString(5));
+while (r.next()) {
+    rowValues.add(r.getString(1));
+    rowValues.add(r.getString(2));
+    rowValues.add(r.getString(3));
+    rowValues.add(r.getString(4));
+    rowValues.add(r.getString(5));
     }
  String[] a= (String[]) rowValues.toArray(new String[rowValues.size()]);
       for(int i=0;i<a.length;i=i+5)
        {
           // System.out.println(ai[i]);  
-model.addRow(new Object[]{a[i],a[i+1],a[i+2],a[i+3],a[i+4] });
+            model.addRow(new Object[]{a[i],a[i+1],a[i+2],a[i+3],a[i+4] });
        }
    }
     }
  catch (SQLException e) {
             System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(Live_Station.class.getName()).log(Level.SEVERE, null, ex);
         }
     
  
@@ -316,14 +354,15 @@ model.addRow(new Object[]{a[i],a[i+1],a[i+2],a[i+3],a[i+4] });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-jTextField1.setText("");
-jTextField2.setText("");
+jComboBox1.addItem("");
+jComboBox2.addItem("");
 DefaultTableModel  model = (DefaultTableModel) jTable1.getModel();
 model.setRowCount(0);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
    

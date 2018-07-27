@@ -8,6 +8,10 @@ package train_reservation_system;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -19,7 +23,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Garima
  */
 public class Cancelled_train extends javax.swing.JFrame {
-
+    
+Connection con;
+    PreparedStatement st;
+    Statement st1;
+    ResultSet rs;
     /**
      * Creates new form Cancelled_train
      */

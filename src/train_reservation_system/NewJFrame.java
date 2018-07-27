@@ -30,8 +30,8 @@ public class NewJFrame extends javax.swing.JFrame {
         initComponents();
          Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
       setBounds(0,0,screenSize.width, screenSize.height);
-        File f=new File("C:\\Users\\rohit_000\\Desktop\\java\\background.jpg");
-        bi=ImageIO.read(f);
+      //  File f=new File("C:\\Users\\rohit_000\\Desktop\\java\\background.jpg");
+       // bi=ImageIO.read(f);
 //        jLabel3.setIcon(new ImageIcon(bi.getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),jLabel3.getWidth())));
     }
 
@@ -64,14 +64,12 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton6.setText("jButton6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1366, 786));
-        setSize(new java.awt.Dimension(1366, 786));
         getContentPane().setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 204));
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 50)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 0));
-        jLabel1.setText("RAILWAY eNQUIRY ");
+        jLabel1.setText("RAILWAY ENQUIRY ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(340, 0, 560, 80);
 
@@ -112,7 +110,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Algerian", 1, 50)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 0));
-        jLabel2.setText("system");
+        jLabel2.setText("SYSTEM");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(490, 60, 230, 80);
 
@@ -146,10 +144,20 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(102, 102, 0));
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jButton2.setText("LIVE STATION");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(102, 102, 0));
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jButton5.setText("TRAINS B/W STATIONS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(102, 102, 0));
         jButton10.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -258,19 +266,20 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       Cancelled_train ct;
         try {
-            // TODO add your handling code here:
-            Cancelled_train ct=new Cancelled_train();
-            this.setVisible(false);
+            ct = new Cancelled_train();
+            ct.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         PNR_STATUS ps=new PNR_STATUS();
-        this.setVisible(false);
+        ps.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -284,6 +293,20 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    Live_Station Live=new Live_Station(); 
+    Live.setVisible(true);
+    
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    Train_Btw_Stations train=new Train_Btw_Stations();
+    train.setVisible(true);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

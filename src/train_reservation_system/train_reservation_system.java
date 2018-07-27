@@ -9,7 +9,7 @@ package train_reservation_system;
  *
  * @author Garima
  */
-public class Train_Reservation_System {
+public class train_reservation_system {
 
     /**
      * @param args the command line arguments
